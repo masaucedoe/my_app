@@ -1,0 +1,26 @@
+<% provide(:title, "Edición del conjunto de datos") %>
+<h1>Editar conjunto de datos</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@dataset) do |f| %>
+			<%= f.label :nombre, "Nombre del problema" %>
+			<%= f.text_field :nombre %>
+
+			<%= f.label :etiqueta_1, "Nombre variable independiente" %>
+			<%= f.text_field :etiqueta_1 %>
+
+			<%= f.label :etiqueta_2, "Nombre variable dependiente" %>
+			<%= f.text_field :etiqueta_2 %>
+
+			<%= f.label :datos_1, "Observaciones variable independiente" %>
+			<%= f.text_field :datos_1 %>
+
+			<%= f.label :datos_2, "Observaciones variable dependiente" %>
+			<%= f.text_field :datos_2 %>
+
+			<%= f.submit "Actualizar conjunto de datos", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>
+

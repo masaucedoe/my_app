@@ -1,0 +1,7 @@
+<li>
+	<%= link_to dataset.nombre, dataset %>
+	| <%= link_to "Mostrar", dataset_path(dataset) %>
+	| <%= link_to "Modificar", edit_dataset_path(dataset) %>
+	| <%= link_to "Eliminar", dataset, method: :delete, data: { confirm: "¿Eliminar #{dataset.nombre}?" } %>
+</li>
+

@@ -1,0 +1,13 @@
+<% provide(:title, 'Listado de conjuntos de datos') %>
+<h1>Listado de conjuntos de datos</h1>
+
+<%= will_paginate %>
+
+<ul class="datasets">
+	<%= render @datasets %>
+</ul>
+
+<%= will_paginate %>
+
+<%= link_to "Crear conjunto de datos", carga_de_datos_path, class: "btn btn-large btn-primary" %>
+

@@ -17,5 +17,27 @@ class DatasetsController < ApplicationController
 	def show
 		@dataset = Dataset.find(params[:id])
 	end
+
+	def index
+		@datasets = Dataset.paginate(page: params[:page], per_page: 20)
+	end
+
+	def destroy
+		Dataset.find(params[:id]).destroy
+		redirect_to datasets_url
+	end
+
+	def edit
+		@dataset = Dataset.find(params[:id])
+	end
+
+	def update
+		@dataset = Dataset.find(params[:id])
+		if @dataset.update_attributes(params[:dataset])
+			redirect_to @dataset
+		else
+			render 'edit'
+		end
+	end
 end
 

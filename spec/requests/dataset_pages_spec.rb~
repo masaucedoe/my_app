@@ -5,10 +5,125 @@ describe "Data pages" do
 	subject { page }
 	let(:base_title) { "Mi aplicación" }
 
+	describe "index" do
+		before do
+			visit carga_de_datos_path
+			fill_in "Nombre del problema", with: "Nombre"
+			fill_in "Nombre variable independiente", with: "Etiqueta_1"
+			fill_in "Nombre variable dependiente", with: "Etiqueta_2"
+			fill_in "Observaciones variable independiente", with: "Datos_1"
+			fill_in "Observaciones variable dependiente", with: "Datos_2"
+			click_button "Crear conjunto de datos"
+		end
+
+		before { visit datasets_path }
+		it { should have_selector('title', text: 'Listado de conjuntos de datos') }
+		it { should have_selector('h1', text: 'Listado de conjuntos de datos') }
+
+		describe "delete links" do
+			before { visit datasets_path }
+			it { should have_link('Eliminar', href: dataset_path(Dataset.first)) }
+			it "should be able to delete another user" do
+				expect { click_link('Eliminar') }.to change(Dataset, :count).by(-1)
+			end
+		end
+	end
+
 	describe "create page" do
 		before { visit carga_de_datos_path }
 			it { should have_selector('h1', text: 'Cargar datos') }
 			it { should have_selector('title', text: "#{base_title} | Carga de datos") }
+	end
+
+	describe "creation" do
+		before { visit carga_de_datos_path }
+		let(:submit) { "Crear conjunto de datos" }
+
+		describe "with invalid information" do
+			it "should not create a dataset" do
+				expect { click_button submit }.not_to change(Dataset, :count)
+			end
+
+			describe "after submission" do
+				before { click_button submit }
+
+				it { should have_selector('title', text: 'Carga de datos') }
+			end
+		end
+
+		describe "with valid information" do
+			before do
+				visit carga_de_datos_path
+				fill_in "Nombre del problema", with: "Ejemplo_1"
+				fill_in "Nombre variable independiente", with: "Etiqueta_1"
+				fill_in "Nombre variable dependiente", with: "Etiqueta_2"
+				fill_in "Observaciones variable independiente", with: "Datos_1"
+				fill_in "Observaciones variable dependiente", with: "Datos_2"
+			end
+
+			it "should create a dataset" do
+				expect { click_button submit }.to change(Dataset, :count).by(1)
+			end
+
+			describe "after saving the dataset" do
+				before { click_button submit }
+
+				it { should have_selector('title', text: "Listado de conjuntos de datos") }
+			end
+		end
+	end
+
+	describe "edit" do
+		let(:submit) { "Crear conjunto de datos" }
+
+		before do
+			visit carga_de_datos_path
+			fill_in "Nombre del problema", with: "Ejemplo_1"
+			fill_in "Nombre variable independiente", with: "Etiqueta_1"
+			fill_in "Nombre variable dependiente", with: "Etiqueta_2"
+			fill_in "Observaciones variable independiente", with: "Datos_1"
+			fill_in "Observaciones variable dependiente", with: "Datos_2"
+			click_button submit
+		end
+		let(:dataset) { Dataset.find_by_nombre("Ejemplo_1") }
+		before { visit edit_dataset_path(dataset) }
+
+		describe "page" do
+			it { should have_selector('h1', text: "Editar conjunto de datos") }
+			it { should have_selector('title', text: "Edición del conjunto de datos") }
+		end
+
+		describe "with invalid information" do
+			before do
+				fill_in "Nombre del problema", with: ""
+				fill_in "Nombre variable independiente", with: ""
+				fill_in "Nombre variable dependiente", with: ""
+				fill_in "Observaciones variable independiente", with: ""
+				fill_in "Observaciones variable dependiente", with: ""
+				click_button "Actualizar conjunto de datos"
+			end
+
+			describe "page" do
+				it { should have_selector('h1', text: "Editar conjunto de datos") }
+				it { should have_selector('title', text: "Edición del conjunto de datos") }
+			end
+		end
+
+		describe "with valid information" do
+			before do
+				fill_in "Nombre del problema", with: "Ejemplo_2"
+				fill_in "Nombre variable independiente", with: "Etiqueta_1"
+				fill_in "Nombre variable dependiente", with: "Etiqueta_2"
+				fill_in "Observaciones variable independiente", with: "Datos_1"
+				fill_in "Observaciones variable dependiente", with: "Datos_2"
+				click_button "Actualizar conjunto de datos"
+			end
+
+			describe "page" do
+				it { should have_selector('h1', text: "Conjunto de datos") }
+				it { should have_selector('title', text: "Conjunto de datos") }
+			end
+		end
 	end
 end
 

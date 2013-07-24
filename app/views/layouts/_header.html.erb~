@@ -5,9 +5,9 @@
 		<%= link_to "Inicio", root_path, id: "logo" %>
 		<nav>
 			<ul class="nav pull-right">
-			<li><%= link_to "Ayuda", '#' %></li>
-			<li><%= link_to "Información", '#' %></li>
-			<li><%= link_to "Contacto", '#' %></li>
+			<li><%= link_to "Ayuda", ayuda_path %></li>
+			<li><%= link_to "Información", informacion_path %></li>
+			<li><%= link_to "Contacto", contacto_path %></li>
 			<li><%= link_to "Datos", '#' %></li>
 			 </ul>
 			</nav>
