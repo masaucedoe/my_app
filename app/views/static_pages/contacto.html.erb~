@@ -1,0 +1,6 @@
+<% provide(:title, 'Contacto') %>
+<h1>Contáctame</h1>
+<p>
+	Mi correo electrónico: <a href="mailto:correo@electronico.com">correo@electronico.com</a> 
+</p>
+

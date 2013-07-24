@@ -1,0 +1,6 @@
+<% provide(:title, 'Información de mi') %>
+<h1>Acerca de mi</h1>
+<p>
+	Soy estudiante del XXIII Verano Científico de la FIME-UANL.
+</p>
+

@@ -1,0 +1,9 @@
+<% provide(:title, 'Inicio') %>
+<div class="center hero-unit">
+	<h1>Mi aplicación</h1>
+	<h2>
+		Esta es la página inicial de mi aplicación en línea.
+	</h2>
+	<%= link_to "Carga de datos", '#', class: "btn btn-large btn-primary" %>
+</div>
+

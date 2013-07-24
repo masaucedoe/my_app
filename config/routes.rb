@@ -1,4 +1,12 @@
 MyApp::Application.routes.draw do
+  get "static_pages/inicio"
+
+  get "static_pages/ayuda"
+
+  get "static_pages/informacion"
+
+  get "static_pages/contacto"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
