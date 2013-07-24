@@ -1,0 +1,20 @@
+<% provide(:title, "Conjunto de datos") %>
+<h1>Conjunto de datos</h1>
+
+<div class="row">
+	<aside class="span12">
+		<section>
+			<h1>
+				<%= @dataset.nombre %>
+			</h1>
+
+			<h4>Datos cargados.</h4>
+
+				<h5 style="display:inline">Variable independiente: <h6 style="display:inline"><%= @dataset.etiqueta_1 %>.</h6></h5><br><br>
+				<h5 style="display:inline">Variable independiente: <h6 style="display:inline"><%= @dataset.etiqueta_2 %>.</h6></h5><br><br>
+				<h5 style="display:inline">Datos, variable independiente: <h6 style="display:inline"><%= @dataset.datos_1 %>.</h6></h5><br><br>
+				<h5 style="display:inline">Datos, variable independiente: <h6 style="display:inline"><%= @dataset.datos_2 %>.</h6></h5>
+		</section>
+	</aside>
+</div>
+

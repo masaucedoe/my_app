@@ -1,9 +1,12 @@
 MyApp::Application.routes.draw do
+	resources :datasets
 
 	root to: 'static_pages#inicio'
 	match '/ayuda', to: 'static_pages#ayuda'
 	match '/informacion', to: 'static_pages#informacion'
 	match '/contacto', to: 'static_pages#contacto'
+
+	match '/carga_de_datos', to: 'datasets#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
